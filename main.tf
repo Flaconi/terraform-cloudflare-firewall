@@ -1,7 +1,3 @@
-provider "cloudflare" {
-  api_token = var.api_token
-}
-
 data "cloudflare_zones" "domain" {
   filter {
     name = var.domain
