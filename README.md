@@ -42,7 +42,29 @@ rules = [
   },
 ]
 ```
+<!-- TFDOCS_HEADER_START -->
 
+
+<!-- TFDOCS_HEADER_END -->
+
+<!-- TFDOCS_PROVIDER_START -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| cloudflare | ~> 3.1.0 |
+
+<!-- TFDOCS_PROVIDER_END -->
+
+<!-- TFDOCS_REQUIREMENTS_START -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.13 |
+| cloudflare | ~> 3.1.0 |
+
+<!-- TFDOCS_REQUIREMENTS_END -->
 
 <!-- TFDOCS_INPUTS_START -->
 ## Required Inputs

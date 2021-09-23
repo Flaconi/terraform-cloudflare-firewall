@@ -121,6 +121,39 @@ _gen-main:
 	@echo "------------------------------------------------------------"
 	@if docker run $$(tty -s && echo "-it" || echo) --rm \
 		-v $(CURRENT_DIR):/data \
+		-e DELIM_START='<!-- TFDOCS_HEADER_START -->' \
+		-e DELIM_CLOSE='<!-- TFDOCS_HEADER_END -->' \
+		cytopia/terraform-docs:$(TFDOCS_VERSION) \
+		terraform-docs-replace-012 --show-all=false --show header md tbl --indent 2 --sort README.md; then \
+		echo "OK"; \
+	else \
+		echo "Failed"; \
+		exit 1; \
+	fi
+	@if docker run $$(tty -s && echo "-it" || echo) --rm \
+		-v $(CURRENT_DIR):/data \
+		-e DELIM_START='<!-- TFDOCS_PROVIDER_START -->' \
+		-e DELIM_CLOSE='<!-- TFDOCS_PROVIDER_END -->' \
+		cytopia/terraform-docs:$(TFDOCS_VERSION) \
+		terraform-docs-replace-012 --show-all=false --show providers md tbl --indent 2 --sort README.md; then \
+		echo "OK"; \
+	else \
+		echo "Failed"; \
+		exit 1; \
+	fi
+	@if docker run $$(tty -s && echo "-it" || echo) --rm \
+		-v $(CURRENT_DIR):/data \
+		-e DELIM_START='<!-- TFDOCS_REQUIREMENTS_START -->' \
+		-e DELIM_CLOSE='<!-- TFDOCS_REQUIREMENTS_END -->' \
+		cytopia/terraform-docs:$(TFDOCS_VERSION) \
+		terraform-docs-replace-012 --show-all=false --show requirements md tbl --indent 2 --sort README.md; then \
+		echo "OK"; \
+	else \
+		echo "Failed"; \
+		exit 1; \
+	fi
+	@if docker run $$(tty -s && echo "-it" || echo) --rm \
+		-v $(CURRENT_DIR):/data \
 		-e DELIM_START='<!-- TFDOCS_INPUTS_START -->' \
 		-e DELIM_CLOSE='<!-- TFDOCS_INPUTS_END -->' \
 		cytopia/terraform-docs:$(TFDOCS_VERSION) \
