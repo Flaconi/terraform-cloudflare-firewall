@@ -16,7 +16,7 @@ variable "rules" {
     paused      = bool
     action      = string
     expression  = string
-    bypass      = list(string)
+    products    = list(string)
   }))
   default = []
 
@@ -24,13 +24,13 @@ variable "rules" {
   # https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/firewall_rule#action
   validation {
     condition     = can([for rule in var.rules : contains(["block", "challenge", "allow", "js_challenge", "bypass", "log"], rule.action)])
-    error_message = "Only the following action elements are allows: block, challenge, allow, js_challenge, bypass, log."
+    error_message = "Only the following action elements are allowed: block, challenge, allow, js_challenge, bypass, log."
   }
 
-  # Ensure we specify only allowed bypass values
+  # Ensure we specify only allowed products values
   # https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/firewall_rule#products
   validation {
-    condition     = can([for rule in var.rules : [for product in rule.bypass : contains(["zoneLockdown", "uaBlock", "bic", "hot", "securityLevel", "rateLimit", "waf"], product)]])
-    error_message = "Only the following bypass elements are allows: zoneLockdown, uaBlock, bic, hot, securityLevel, rateLimit, waf."
+    condition     = can([for rule in var.rules : [for product in rule.products : contains(["zoneLockdown", "uaBlock", "bic", "hot", "securityLevel", "rateLimit", "waf"], product)]])
+    error_message = "Only the following product elements are allowed: zoneLockdown, uaBlock, bic, hot, securityLevel, rateLimit, waf."
   }
 }

@@ -11,6 +11,7 @@ resource "cloudflare_filter" "filters" {
 
   description = each.value.description
   expression  = each.value.expression
+  paused      = each.value.paused
 }
 
 resource "cloudflare_firewall_rule" "rules" {
@@ -23,5 +24,5 @@ resource "cloudflare_firewall_rule" "rules" {
   description = each.value.description
   paused      = each.value.paused
   action      = each.value.action
-  products    = each.value.bypass
+  products    = each.value.products
 }

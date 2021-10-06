@@ -30,7 +30,7 @@ rules = [
     paused      = false
     action      = "bypass"
     expression  = "(http.user_agent contains \"UA-TEST/\" and ip.src eq 1.2.3.4 and http.request.uri.path eq \"/api/endpoint\")"
-    bypass      = ["waf"]
+    products    = ["waf"]
   },
   {
     priority    = 2
@@ -38,7 +38,7 @@ rules = [
     paused      = false
     action      = "allow"
     expression  = "(http.user_agent contains \"UA-TEST1\" and ip.src eq 1.2.3.4 and http.request.uri.path eq \"/api/endpoint\")"
-    bypass      = []
+    products    = []
   },
 ]
 ```
@@ -100,7 +100,7 @@ list(object({
     paused      = bool
     action      = string
     expression  = string
-    bypass      = list(string)
+    products    = list(string)
   }))
 ```
 
