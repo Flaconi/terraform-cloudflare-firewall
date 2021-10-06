@@ -13,7 +13,7 @@ locals {
   #     paused      = <paused>
   #     action      = <action>
   #     expression  = <expression>
-  #     bypass      = []
+  #     products    = []
   #   },
   #   {
   #     priority    = <priority>
@@ -21,7 +21,7 @@ locals {
   #     paused      = <paused>
   #     action      = <action>
   #     expression  = <expression>
-  #     bypass      = []
+  #     products    = []
   #   },
   # ]
   #
@@ -35,7 +35,7 @@ locals {
   #     paused      = <paused>
   #     action      = <action>
   #     expression  = <expression>
-  #     bypass      = []
+  #     products    = []
   #   },
   #   <expression> = {
   #     priority    = <priority>
@@ -43,7 +43,7 @@ locals {
   #     paused      = <paused>
   #     action      = <action>
   #     expression  = <expression>
-  #     bypass      = []
+  #     products    = []
   #   },
   # }
   rules = { for i, v in var.rules : var.rules[i]["expression"] => v }
