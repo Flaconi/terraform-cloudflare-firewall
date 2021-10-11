@@ -52,7 +52,7 @@ rules = [
 
 | Name | Version |
 |------|---------|
-| cloudflare | ~> 3.1.0 |
+| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | ~> 3.1.0 |
 
 <!-- TFDOCS_PROVIDER_END -->
 
@@ -61,8 +61,8 @@ rules = [
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.13 |
-| cloudflare | ~> 3.1.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
+| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | ~> 3.1.0 |
 
 <!-- TFDOCS_REQUIREMENTS_END -->
 
@@ -71,13 +71,13 @@ rules = [
 
 The following input variables are required:
 
-### api\_token
+### <a name="input_api_token"></a> [api\_token](#input\_api\_token)
 
 Description: The Cloudflare API token.
 
 Type: `string`
 
-### domain
+### <a name="input_domain"></a> [domain](#input\_domain)
 
 Description: Cloudflare domain to apply rules for.
 
@@ -87,7 +87,7 @@ Type: `string`
 
 The following input variables are optional (have default values):
 
-### rules
+### <a name="input_rules"></a> [rules](#input\_rules)
 
 Description: List of Cloudflare firewall rule objects.
 
@@ -113,9 +113,9 @@ Default: `[]`
 
 | Name | Description |
 |------|-------------|
-| domain | Current zone information. |
-| filters | Created Cloudflare filters for the current zone. |
-| rules | Created Cloudflare rules for the current zone. |
+| <a name="output_domain"></a> [domain](#output\_domain) | Current zone information. |
+| <a name="output_filters"></a> [filters](#output\_filters) | Created Cloudflare filters for the current zone. |
+| <a name="output_rules"></a> [rules](#output\_rules) | Created Cloudflare rules for the current zone. |
 
 <!-- TFDOCS_OUTPUTS_END -->
 
