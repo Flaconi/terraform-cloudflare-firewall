@@ -17,6 +17,11 @@ To overcome this limitation, all rules in this module are indexed by their corre
 This also means that whenever the expression changes, the rule will be recreated. Changes in all other values will not trigger a recreated.
 
 
+## Priority of rules
+
+This module omits the `priority` key for rulesets and auto-calculates those by the order they appear in the `rules` list.
+
+
 ## Example
 
 `terraform.tfvars`:
@@ -25,7 +30,6 @@ domain = "domain.tld"
 
 rules = [
   {
-    priority    = 1
     description = "Test (WAF Bypass)"
     paused      = false
     action      = "bypass"
@@ -33,7 +37,6 @@ rules = [
     products    = ["waf"]
   },
   {
-    priority    = 2
     description = "Test"
     paused      = false
     action      = "allow"
@@ -95,7 +98,6 @@ Type:
 
 ```hcl
 list(object({
-    priority    = number
     description = string
     paused      = bool
     action      = string

@@ -11,7 +11,6 @@ variable "domain" {
 variable "rules" {
   description = "List of Cloudflare firewall rule objects."
   type = list(object({
-    priority    = number
     description = string
     paused      = bool
     action      = string

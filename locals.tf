@@ -8,7 +8,6 @@ locals {
   #
   # rules = [
   #   {
-  #     priority    = <priority>
   #     description = <description>
   #     paused      = <paused>
   #     action      = <action>
@@ -16,7 +15,6 @@ locals {
   #     products    = []
   #   },
   #   {
-  #     priority    = <priority>
   #     description = <description>
   #     paused      = <paused>
   #     action      = <action>
@@ -30,7 +28,7 @@ locals {
   #
   # rules = {
   #   <expression> = {
-  #     priority    = <priority>
+  #     priority    = <auto-calculated>
   #     description = <description>
   #     paused      = <paused>
   #     action      = <action>
@@ -38,7 +36,7 @@ locals {
   #     products    = []
   #   },
   #   <expression> = {
-  #     priority    = <priority>
+  #     priority    = <auto-calculated>
   #     description = <description>
   #     paused      = <paused>
   #     action      = <action>
@@ -46,5 +44,11 @@ locals {
   #     products    = []
   #   },
   # }
-  rules = { for i, v in var.rules : var.rules[i]["expression"] => v }
+  rules = { for idx, item in var.rules : var.rules[idx]["expression"] => merge(
+    item,
+    {
+      priority = idx + 1
+    }
+    )
+  }
 }
