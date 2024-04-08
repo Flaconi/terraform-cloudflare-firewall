@@ -4,25 +4,34 @@ data "cloudflare_zones" "domain" {
   }
 }
 
-resource "cloudflare_filter" "filters" {
-  for_each = local.rules
-
+resource "cloudflare_ruleset" "http_request_firewall_custom" {
   zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")
+  name    = "default"
+  kind    = "zone"
+  phase   = "http_request_firewall_custom"
 
-  description = each.value.description
-  expression  = each.value.expression
-  paused      = each.value.paused
-}
+  dynamic "rules" {
+    for_each = local.rules
 
-resource "cloudflare_firewall_rule" "rules" {
-  for_each = local.rules
+    content {
+      action = rules.value.action
+      dynamic "action_parameters" {
+        for_each = rules.value.action_parameters[*]
+        content {
+          ruleset  = action_parameters.value.ruleset
+          products = action_parameters.value.products
+        }
+      }
+      description = rules.value.description
+      enabled     = rules.value.enabled
+      expression  = rules.value.expression
+      dynamic "logging" {
+        for_each = rules.value.logging[*]
+        content {
+          enabled = logging.value.enabled
+        }
+      }
+    }
+  }
 
-  zone_id   = lookup(data.cloudflare_zones.domain.zones[0], "id")
-  filter_id = cloudflare_filter.filters[each.value.expression].id
-
-  priority    = each.value.priority
-  description = each.value.description
-  paused      = each.value.paused
-  action      = each.value.action
-  products    = each.value.products
 }

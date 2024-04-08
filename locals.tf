@@ -1,54 +1,17 @@
-# -------------------------------------------------------------------------------------------------
-# Rule transformations
-# -------------------------------------------------------------------------------------------------
-
 locals {
-  # Transforn from:
-  #
-  #
-  # rules = [
-  #   {
-  #     description = <description>
-  #     paused      = <paused>
-  #     action      = <action>
-  #     expression  = <expression>
-  #     products    = []
-  #   },
-  #   {
-  #     description = <description>
-  #     paused      = <paused>
-  #     action      = <action>
-  #     expression  = <expression>
-  #     products    = []
-  #   },
-  # ]
-  #
-  # Into the following format:
-  #
-  #
-  # rules = {
-  #   <expression> = {
-  #     priority    = <auto-calculated>
-  #     description = <description>
-  #     paused      = <paused>
-  #     action      = <action>
-  #     expression  = <expression>
-  #     products    = []
-  #   },
-  #   <expression> = {
-  #     priority    = <auto-calculated>
-  #     description = <description>
-  #     paused      = <paused>
-  #     action      = <action>
-  #     expression  = <expression>
-  #     products    = []
-  #   },
-  # }
-  rules = { for idx, item in var.rules : var.rules[idx]["expression"] => merge(
-    item,
+  rules = [for rule in var.rules :
     {
-      priority = idx + 1
+      action = rule.action
+      action_parameters = rule.action == "skip" ? {
+        ruleset  = length(rule.products) == 0 ? "current" : null
+        products = length(rule.products) > 0 ? rule.products : null
+      } : null
+      description = rule.description
+      enabled     = rule.enabled
+      expression  = rule.expression
+      logging = rule.action == "skip" ? {
+        enabled = true
+      } : null
     }
-    )
-  }
+  ]
 }

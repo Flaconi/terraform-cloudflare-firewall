@@ -55,7 +55,7 @@ rules = [
 
 | Name | Version |
 |------|---------|
-| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | ~> 3.9.1 |
+| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | ~> 4.29.0 |
 
 <!-- TFDOCS_PROVIDER_END -->
 
@@ -64,8 +64,8 @@ rules = [
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
-| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | ~> 3.9.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
+| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | ~> 4.29.0 |
 
 <!-- TFDOCS_REQUIREMENTS_END -->
 
@@ -99,7 +99,7 @@ Type:
 ```hcl
 list(object({
     description = string
-    paused      = bool
+    enabled     = bool
     action      = string
     expression  = string
     products    = list(string)
@@ -116,7 +116,6 @@ Default: `[]`
 | Name | Description |
 |------|-------------|
 | <a name="output_domain"></a> [domain](#output\_domain) | Current zone information. |
-| <a name="output_filters"></a> [filters](#output\_filters) | Created Cloudflare filters for the current zone. |
 | <a name="output_rules"></a> [rules](#output\_rules) | Created Cloudflare rules for the current zone. |
 
 <!-- TFDOCS_OUTPUTS_END -->
