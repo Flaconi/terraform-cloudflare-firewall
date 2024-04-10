@@ -1,9 +1,3 @@
-data "cloudflare_zones" "domain" {
-  filter {
-    name = var.domain
-  }
-}
-
 resource "cloudflare_ruleset" "http_request_firewall_custom" {
   zone_id = lookup(data.cloudflare_zones.domain.zones[0], "id")
   name    = "default"
