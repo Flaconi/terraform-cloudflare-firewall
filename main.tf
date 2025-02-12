@@ -27,5 +27,4 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
       }
     }
   }
-
 }
