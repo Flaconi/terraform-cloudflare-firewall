@@ -6,8 +6,8 @@ variable "domain" {
 variable "rules" {
   description = "List of Cloudflare firewall rule objects."
   type = list(object({
-    description = string
-    enabled     = bool
+    description = optional(string)
+    enabled     = optional(bool, true)
     action      = string
     expression  = string
     products    = list(string)

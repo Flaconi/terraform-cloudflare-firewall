@@ -1,4 +1,3 @@
-# https://github.com/cloudflare/terraform-provider-cloudflare
 terraform {
   required_providers {
     cloudflare = {
