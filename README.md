@@ -74,12 +74,6 @@ rules = [
 
 The following input variables are required:
 
-### <a name="input_api_token"></a> [api\_token](#input\_api\_token)
-
-Description: The Cloudflare API token.
-
-Type: `string`
-
 ### <a name="input_domain"></a> [domain](#input\_domain)
 
 Description: Cloudflare domain to apply rules for.
