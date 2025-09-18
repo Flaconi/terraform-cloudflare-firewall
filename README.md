@@ -31,14 +31,12 @@ domain = "domain.tld"
 rules = [
   {
     description = "Test (WAF Bypass)"
-    paused      = false
     action      = "bypass"
     expression  = "(http.user_agent contains \"UA-TEST/\" and ip.src eq 1.2.3.4 and http.request.uri.path eq \"/api/endpoint\")"
     products    = ["waf"]
   },
   {
     description = "Test"
-    paused      = false
     action      = "allow"
     expression  = "(http.user_agent contains \"UA-TEST1\" and ip.src eq 1.2.3.4 and http.request.uri.path eq \"/api/endpoint\")"
     products    = []
@@ -92,8 +90,8 @@ Type:
 
 ```hcl
 list(object({
-    description = string
-    enabled     = bool
+    description = optional(string)
+    enabled     = optional(bool, true)
     action      = string
     expression  = string
     products    = list(string)
