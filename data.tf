@@ -1,5 +1,3 @@
-data "cloudflare_zones" "domain" {
-  filter {
-    name = var.domain
-  }
+data "cloudflare_zones" "this" {
+  name = var.domain
 }
